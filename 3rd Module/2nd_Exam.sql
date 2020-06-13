@@ -1,8 +1,4 @@
--- 1.Question 1
--- All of the questions in this quiz refer to the open source Chinook Database.
--- Please familiarize yourself with the ER diagram in order to familiarize yourself with the table and column names in order to write accurate queries and get the appropriate answers.
-
--- Using a subquery, find the names of all the tracks for the album "Californication".
+-- 1.Using a subquery, find the names of all the tracks for the album "Californication".
 
 SELECT 
 Name 
@@ -28,11 +24,7 @@ WHERE AlbumId IN (SELECT AlbumID FROM Albums WHERE Title = 'Californication')
 (Output limit exceeded, 10 of 15 total rows shown)
 
 
--- 2.Question 2
--- All of the questions in this quiz refer to the open source Chinook Database. 
--- Please familiarize yourself with the ER diagram in order to familiarize yourself with the table and column names in order to write accurate queries and get the appropriate answers.
-
--- Find the total number of invoices for each customer along with the customers full name, city and email.
+-- 2. Find the total number of invoices for each customer along with the customers full name, city and email.
 
 SELECT 
 FirstName
@@ -60,10 +52,7 @@ GROUP BY C.CustomerId
 +-----------+-------------+---------------------+--------------------------+----------+
 --(Output limit exceeded, 10 of 59 total rows shown)
 
---3. All of the questions in this quiz refer to the open source Chinook Database.
--- Please familiarize yourself with the ER diagram in order to familiarize yourself with the table and column names in order to write accurate queries and get the appropriate answers.
-
--- Retrieve the track name, album, artistID, and trackID for all the albums.
+--3.Retrieve the track name, album, artistID, and trackID for all the albums.
 
 SELECT 
 Tracks.Name,
@@ -91,9 +80,7 @@ ON A.ArtistId = Albums.ArtistId);
 +-----------------------------------------+--------+---------------------------------------+---------+
 (Output limit exceeded, 10 of 3503 total rows shown). 
 
--- 4.All of the questions in this quiz refer to the open source Chinook Database.
--- Please familiarize yourself with the ER diagram in order to familiarize yourself with the table and column names in order to write accurate queries and get the appropriate answers.
--- Retrieve a list with the managers last name, and the last name of the employees who report to him or her.
+-- 4.Retrieve a list with the managers last name, and the last name of the employees who report to him or her.
 
 SELECT M.LastName AS Manager, 
        E.LastName AS Employee
@@ -112,5 +99,76 @@ ON E.ReportsTo = M.EmployeeID
 | Mitchell | Callahan |
 +----------+----------+
 
--- 5.
+-- 5. Find the name and ID of the artists who do not have albums.
 
+SELECT Name,
+Artists.ArtistId,
+Albums.Title
+FROM Artists
+LEFT JOIN Albums
+ON Artists.ArtistId = Albums.ArtistId
+WHERE Title IS NULL
+
+--Output
++----------------------------+----------+-------+
+| Name                       | ArtistId | Title |
++----------------------------+----------+-------+
+| Milton Nascimento & Bebeto |       25 |  None |
+| Azymuth                    |       26 |  None |
+| João Gilberto              |       28 |  None |
+| Bebel Gilberto             |       29 |  None |
+| Jorge Vercilo              |       30 |  None |
+| Baby Consuelo              |       31 |  None |
+| Ney Matogrosso             |       32 |  None |
+| Luiz Melodia               |       33 |  None |
+| Nando Reis                 |       34 |  None |
+| Pedro Luís & A Parede      |       35 |  None |
++----------------------------+----------+-------+
+-- (Output limit exceeded, 10 of 71 total rows shown)
+
+-- 6. Use a UNION to create a list of all the employee's and customer's first names and last names ordered by the last name in descending order.
+SELECT
+FirstName
+,LastName
+FROM Employees
+UNION
+SELECT 
+FirstName
+,LastName
+FROM Customers
+ORDER BY LastName DESC
+
+--OUTPUT
++-----------+--------------+
+| FirstName | LastName     |
++-----------+--------------+
+| Fynn      | Zimmermann   |
+| Stanisław | Wójcik       |
+| František | Wichterlová  |
+| Johannes  | Van der Berg |
+| François  | Tremblay     |
+| Mark      | Taylor       |
+| Ellie     | Sullivan     |
+| Victor    | Stevens      |
+| Puja      | Srivastava   |
+| Jack      | Smith        |
++-----------+--------------+
+-- (Output limit exceeded, 10 of 67 total rows shown)
+
+-- 7.See if there are any customers who have a different city listed in their billing city versus their customer city.
+
+SELECT C.FirstName,
+C.LastName,
+C.City AS CustomerCity,
+I.BillingCity
+FROM Customers C
+INNER JOIN Invoices I
+ON C.CustomerId = I.CustomerId
+WHERE CustomerCity != BillingCity
+
+--OUTPUT
++-----------+----------+--------------+-------------+
+| FirstName | LastName | CustomerCity | BillingCity |
++-----------+----------+--------------+-------------+
++-----------+----------+--------------+-------------+
+(Zero rows)

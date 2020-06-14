@@ -42,3 +42,136 @@ FROM Customers
 -- 2.Create a new employee user id by combining the first 4 letters of the employee’s first name with the first 2 letters of the employee’s last name.
 -- Make the new field lower case and pull each individual step to show your work.
 
+SELECT FirstName,
+       LastName,
+       LOWER(SUBSTR(FirstName,1,4)) AS A,
+       LOWER(SUBSTR(LastName,1,2)) AS B,
+       LOWER(SUBSTR(FirstName,1,4)) || LOWER(SUBSTR(LastName,1,2)) AS userId
+FROM Employees
+
+-- OUTPUT
++-----------+----------+------+----+--------+
+| FirstName | LastName | A    | B  | userId |
++-----------+----------+------+----+--------+
+| Andrew    | Adams    | andr | ad | andrad |
+| Nancy     | Edwards  | nanc | ed | nanced |
+| Jane      | Peacock  | jane | pe | janepe |
+| Margaret  | Park     | marg | pa | margpa |
+| Steve     | Johnson  | stev | jo | stevjo |
+| Michael   | Mitchell | mich | mi | michmi |
+| Robert    | King     | robe | ki | robeki |
+| Laura     | Callahan | laur | ca | laurca |
++-----------+----------+------+----+--------+
+
+-- 3. Show a list of employees who have worked for the company for 15 or more years using the current date function.
+-- Sort by lastname ascending.
+
+SELECT FirstName,
+       LastName,
+       HireDate,
+       (STRFTIME('%Y', 'now') - STRFTIME('%Y', HireDate)) 
+          - (STRFTIME('%m-%d', 'now') < STRFTIME('%m-%d', HireDate)) 
+          AS YearsWorked
+FROM Employees
+WHERE YearsWorked >= 15
+ORDER BY LastName ASC
+
+-- 4. Profiling the Customers table, answer the following question.
+
+SELECT COUNT(*)
+FROM Customers
+WHERE [Table that we need consult] IS NULL
+
+-- Are there any columns with null values? Indicate any below. Select all that apply.
+
+-- [ ]Address
+-- [x]Phone
+-- [x]Fax
+-- [ ]FirstName
+-- [x]Postal Code
+-- [x]Company
+
+-- 5.Find the cities with the most customers and rank in descending order.
+
+SELECT City,
+       COUNT(*)
+FROM Customers
+GROUP BY City
+ORDER BY COUNT(*) DESC
+
+-- OUTOUT
++---------------+----------+
+| City          | COUNT(*) |
++---------------+----------+
+| Berlin        |        2 |
+| London        |        2 |
+| Mountain View |        2 |
+| Paris         |        2 |
+| Prague        |        2 |
+| São Paulo     |        2 |
+| Amsterdam     |        1 |
+| Bangalore     |        1 |
+| Bordeaux      |        1 |
+| Boston        |        1 |
+| Brasília      |        1 |
+| Brussels      |        1 |
+| Budapest      |        1 |
+| Buenos Aires  |        1 |
+| Chicago       |        1 |
+| Copenhagen    |        1 |
+| Cupertino     |        1 |
+| Delhi         |        1 |
+| Dijon         |        1 |
+| Dublin        |        1 |
+| Edinburgh     |        1 |
+| Edmonton      |        1 |
+| Fort Worth    |        1 |
+| Frankfurt     |        1 |
+| Halifax       |        1 |
++---------------+----------+
+-- (Output limit exceeded, 25 of 53 total rows shown)
+
+-- Which of the following cities indicate having 2 customers?
+
+-- [ ] Budapest
+-- [ ] Frankfurt
+-- [X] Mountain View
+-- [ ] Dublin
+-- [X] São Paulo
+-- [X] London
+
+-- 6. Create a new customer invoice id by combining a customer’s invoice id with their first and last name while ordering your query in the following order: firstname, lastname, and invoiceID.
+
+SELECT C.FirstName,
+       C.LastName,
+       I.InvoiceId,
+       C.FirstName || C.LastName || I.InvoiceID AS NewId
+FROM Customers C INNER JOIN Invoices I
+ON C.CustomerId = I.CustomerID
+WHERE NewId LIKE 'AstridGruber%'
+
+--OUTPUT
++-----------+----------+-----------+-----------------+
+| FirstName | LastName | InvoiceId | NewId           |
++-----------+----------+-----------+-----------------+
+| Astrid    | Gruber   |        78 | AstridGruber78  |
+| Astrid    | Gruber   |        89 | AstridGruber89  |
+| Astrid    | Gruber   |       144 | AstridGruber144 |
+| Astrid    | Gruber   |       273 | AstridGruber273 |
+| Astrid    | Gruber   |       296 | AstridGruber296 |
+| Astrid    | Gruber   |       318 | AstridGruber318 |
+| Astrid    | Gruber   |       370 | AstridGruber370 |
++-----------+----------+-----------+-----------------+
+
+-- Select all of the correct "AstridGruber" entries that are returned in your results below. Select all that apply.
+
+-- [X] AstridGruber273
+-- [X] AstridGruber296
+-- [ ] AstridGruber354
+-- [X] AstridGruber370
+-- [ ] AstridGruber408
+
+
+
+
+

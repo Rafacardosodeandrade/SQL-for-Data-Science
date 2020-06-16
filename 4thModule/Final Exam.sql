@@ -312,3 +312,41 @@ FROM elite_years
 +-----------------------+
 |                  2780 |
 +-----------------------+
+
+-- 3. Are there any columns with null values in the Users table? Indicate "yes," or "no."
+
+	Answer: 
+	
+	
+	SQL code used to arrive at answer:
+	
+SELECT COUNT (*)
+FROM user
+WHERE id is null
+    OR name is null
+    OR review_count is null
+    OR  yelping_since is null
+    OR useful is null
+    OR funny is null
+    OR cool is null
+    OR fans is null
+    OR average_stars is null
+    OR compliment_hot is null
+    OR compliment_more is null
+    OR compliment_profile is null
+    OR compliment_cute is null
+    OR compliment_list is null
+    OR compliment_note is null
+    OR compliment_plain is null
+    OR compliment_cool is null
+    OR compliment_funny is null
+    OR compliment_writer is null
+    OR compliment_photos is null
+
+--OUTPUT
++-----------+
+| COUNT (*) |
++-----------+
+|         0 |
++-----------+
+

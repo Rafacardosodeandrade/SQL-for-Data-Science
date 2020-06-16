@@ -350,3 +350,15 @@ WHERE id is null
 |         0 |
 +-----------+
 
+-- 4. For each table and column listed below, display the smallest (minimum), 
+-- largest (maximum), and average (mean) value for the following fields:
+
+--i. Table: Review, Column: Stars
+	
+		min: 1		max: 5		avg: 3.7082
+
+SELECT  
+  MIN(stars), 
+  MAX(stars), 
+  AVG(stars)
+  FROM review

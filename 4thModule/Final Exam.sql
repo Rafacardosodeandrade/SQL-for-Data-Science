@@ -468,5 +468,26 @@ SELECT
 |       3 |   5.0 |
 +---------+-------+
 
+--7. Find the top 3 users based on their total number of reviews:
+		
+--	SQL code used to arrive at answer:
+SELECT 
+  review_count,  
+  name
+  FROM user
+  ORDER BY review_count DESC
+  LIMIT 3
+
+--	Copy and Paste the Result Below:
++--------------+--------+
+| review_count | name   |
++--------------+--------+
+|         2000 | Gerald |
+|         1629 | Sara   |
+|         1339 | Yuri   |
++--------------+--------+
+
+
+
 
 

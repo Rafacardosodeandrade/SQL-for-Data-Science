@@ -532,6 +532,29 @@ SELECT
 +--------------+------+
 (Output limit exceeded, 25 of 10000 total rows shown)
 	
---9
+--9 9. Are there more reviews with the word "love" or with the word "hate" in them?
+--	Answer: Yes, Love appear 1780 times, and Hate just 232 times. 
 
+-- SQL code used to arrive at answer:
 
+SELECT COUNT(*)
+FROM review
+WHERE text LIKE '%love%'
+
++----------+
+| COUNT(*) |
++----------+
+|     1780 |
++----------+
+
+SELECT COUNT(*)
+FROM review
+WHERE text LIKE '%hate%'
+
++----------+
+| COUNT(*) |
++----------+
+|      232 |
++----------+
+
+10.

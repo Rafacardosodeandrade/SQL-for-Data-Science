@@ -373,6 +373,17 @@ SELECT
   AVG(stars)
   FROM business
 
---ii. Table: Tip, Column: Likes
+--iii. Table: Tip, Column: Likes
 	
-		min:		max:		avg:
+		min: 0 		max: 2		avg: 0.0144
+
+SELECT  
+  MIN(likes), 
+  MAX(likes), 
+  AVG(likes)
+  FROM tip
+
+--iv. Table: Checkin, Column: Count
+
+        min:		max:		avg:
+

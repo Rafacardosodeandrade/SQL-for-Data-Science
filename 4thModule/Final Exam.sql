@@ -362,3 +362,17 @@ SELECT
   MAX(stars), 
   AVG(stars)
   FROM review
+
+--ii. Table: Business, Column: Stars
+	
+		min: 1		max: 5		avg: 3.6549 
+
+SELECT  
+  MIN(stars), 
+  MAX(stars), 
+  AVG(stars)
+  FROM business
+
+--ii. Table: Tip, Column: Likes
+	
+		min:		max:		avg:

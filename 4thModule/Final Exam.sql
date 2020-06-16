@@ -403,7 +403,7 @@ SELECT
   AVG(review_count)
   FROM user
 
---5
+--5. List the cities with the most reviews in descending order:
 
 SELECT  
   city,
@@ -442,4 +442,31 @@ SELECT
 | Lakewood        |              1465 |
 | Goodyear        |              1155 |
 +-----------------+-------------------+
-(Output limit exceeded, 25 of 362 total rows shown)  
+(Output limit exceeded, 25 of 362 total rows shown)
+
+--6. Find the distribution of star ratings to the business in the following cities:
+
+--i. Avon
+
+--SQL code used to arrive at answer:
+SELECT 
+  SUM(review_count) AS numbers, 
+  stars
+  FROM business
+  WHERE city = 'Avon'
+  GROUP BY stars
+
+--Copy and Paste the Resulting Table Below (2 columns – star rating and count):
++---------+-------+
+| numbers | stars |
++---------+-------+
+|      10 |   1.5 |
+|       6 |   2.5 |
+|      88 |   3.5 |
+|      21 |   4.0 |
+|      31 |   4.5 |
+|       3 |   5.0 |
++---------+-------+
+
+
+

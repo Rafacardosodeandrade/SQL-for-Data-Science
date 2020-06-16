@@ -487,7 +487,51 @@ SELECT
 |         1339 | Yuri   |
 +--------------+--------+
 
+--8.Does posing more reviews correlate with more fans?
 
+--Please explain your findings and interpretation of the results:
+--As table below show that posing more reviews does not correlate with more fans. The proof is YURI that have 3rd position in number of reviews, but almost last position in the considering the number of fans.
 
+	
+SELECT 
+    name
+    review_count,
+    fans
+    FROM user
+    ORDER BY fans DESC
+
+--OUTPUT
++--------------+------+
+| review_count | fans |
++--------------+------+
+| Amy          |  503 |
+| Mimi         |  497 |
+| Harald       |  311 |
+| Gerald       |  253 |
+| Christine    |  173 |
+| Lisa         |  159 |
+| Cat          |  133 |
+| William      |  126 |
+| Fran         |  124 |
+| Lissa        |  120 |
+| Mark         |  115 |
+| Tiffany      |  111 |
+| bernice      |  105 |
+| Roanna       |  104 |
+| Angela       |  101 |
+| .Hon         |  101 |
+| Ben          |   96 |
+| Linda        |   89 |
+| Christina    |   85 |
+| Jessica      |   84 |
+| Greg         |   81 |
+| Nieves       |   80 |
+| Sui          |   78 |
+| Yuri         |   76 |
+| Nicole       |   73 |
++--------------+------+
+(Output limit exceeded, 25 of 10000 total rows shown)
+	
+--9
 
 

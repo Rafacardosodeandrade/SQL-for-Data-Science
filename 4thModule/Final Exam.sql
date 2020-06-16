@@ -385,5 +385,22 @@ SELECT
 
 --iv. Table: Checkin, Column: Count
 
-        min:		max:		avg:
+        min: 1		max: 53		avg: 1.9414
 
+SELECT  
+  MIN(count), 
+  MAX(count), 
+  AVG(count)
+  FROM checkin
+
+--v. Table: User, Column: Review_count
+	
+		min: 0 		max: 2000	avg: 24.2995
+
+SELECT  
+  MIN(review_count), 
+  MAX(review_count), 
+  AVG(review_count)
+  FROM user
+
+  

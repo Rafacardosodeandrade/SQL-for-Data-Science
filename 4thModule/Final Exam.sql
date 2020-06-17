@@ -611,3 +611,31 @@ GROUP BY business.stars;
 | Desert Medical Equipment       | Las Vegas | Shopping |   5.0 | Monday|8:00-17:00    |            4 | 3555 W Reno Ave, Ste F      | 89118       |
 +--------------------------------+-----------+----------+-------+----------------------+--------------+-----------------------------+-------------+
 
+--2. Group business based on the ones that are open and the ones that are closed. What differences can you find between the ones that are still open and the ones that are closed? List at least two differences and the SQL code you used to arrive at your answer.
+		
+-- i. Difference 1:
+-- The ones that are still open have more reviews on
+-- average than others that is closed.
+         
+-- ii. Difference 2:
+-- More business that are still open listed as USEFUL AND FUNNY
+
+SELECT
+AVG(b.stars),
+SUM(b.review_count),
+AVG(b.review_count),
+COUNT(r.useful) + 
+COUNT(r.funny),
+is_open
+FROM business b INNER JOIN review r ON b.id = r.id
+GROUP BY b.is_open
+
+-- OUTPUT
++---------------+---------------------+---------------------+--------------------+---------+
+|  AVG(b.stars) | SUM(b.review_count) | AVG(b.review_count) | COUNT(r.useful) + 
+COUNT(r.funny) | is_open |
++---------------+---------------------+---------------------+--------------------+---------+
+|           2.0 |                   4 |                 4.0 |                  2 |       0 |
+| 2.96153846154 |                 504 |       38.7692307692 |                 26 |       1 |
++---------------+---------------------+---------------------+--------------------+---------+
+

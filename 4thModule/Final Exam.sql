@@ -581,3 +581,33 @@ LIMIT 10
 | Fran      |  124 |
 | Lissa     |  120 |
 +-----------+------+
+
+--Part 2: nferences and Analysis
+--1. Pick one city and category of your choice and group the businesses in that city or category by their overall star rating.
+-- Compare the businesses with 2-3 stars to the businesses with 4-5 stars and answer the following questions. Include your code.
+
+SELECT
+business.name
+, business.city
+, category.category
+, business.stars
+,hours.hours,
+business.review_count,
+business.address,
+business.postal_code
+FROM (business INNER JOIN category ON business.id = 
+category.business_id) INNER JOIN hours ON hours.business_id =
+business.id
+WHERE business.city = 'Las Vegas' AND category.category = "Shopping"
+GROUP BY business.stars;
+
+--OUTPUT
++--------------------------------+-----------+----------+-------+----------------------+--------------+-----------------------------+-------------+
+| name                           | city      | category | stars | hours                | review_count | address                     | postal_code |
++--------------------------------+-----------+----------+-------+----------------------+--------------+-----------------------------+-------------+
+| Walgreens                      | Las Vegas | Shopping |   2.5 | Saturday|8:00-22:00  |            6 | 3808 E Tropicana Ave        | 89121       |
+| Wooly Wonders                  | Las Vegas | Shopping |   3.5 | Saturday|10:00-16:00 |           11 | 3421 E Tropicana Ave, Ste I | 89121       |
+| Red Rock Canyon Visitor Center | Las Vegas | Shopping |   4.5 | Saturday|8:00-16:30  |           32 | 1000 Scenic Loop Dr         | 89161       |
+| Desert Medical Equipment       | Las Vegas | Shopping |   5.0 | Monday|8:00-17:00    |            4 | 3555 W Reno Ave, Ste F      | 89118       |
++--------------------------------+-----------+----------+-------+----------------------+--------------+-----------------------------+-------------+
+

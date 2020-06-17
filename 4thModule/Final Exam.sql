@@ -639,3 +639,46 @@ COUNT(r.funny) | is_open |
 | 2.96153846154 |                 504 |       38.7692307692 |                 26 |       1 |
 +---------------+---------------------+---------------------+--------------------+---------+
 
+--3. For this last part of your analysis, you are going to choose the type of analysis you want to conduct on the Yelp dataset and are going to prepare the data for analysis.
+
+--Ideas for analysis include: Parsing out keywords and business attributes for sentiment analysis, clustering businesses to find commonalities or anomalies between them, predicting the overall star rating for a business, predicting the number of fans a user will have, and so on. These are just a few examples to get you started, so feel free to be creative and come up with your own problem you want to solve. Provide answers, in-line, to all of the following:
+	
+--i. Indicate the type of analysis you chose to do:
+--I would like to figure out the relation between the Cities and the number of Stars, to check with are the cities with a better ranking in stars, because this result can show us that cities have the best places to go.
+         
+         
+--ii. Write 1-2 brief paragraphs on the type of data you will need for your analysis and why you chose that data:
+--I need two tables. First, I join these two tables based on business and review.
+--Then I sort them based on number of stars to check the correlation between the cities and the number of stars. 
+--I choose this analysis because I believe that is a good data to beginning discovery the best place to go in a vacation, considering the ranking of "5stars" per city. 
+		                           
+                  
+--iii. Output of your finished dataset:
+         
++-------------+-------+
+| city        | stars |
++-------------+-------+
+| Macedonia   |     5 |
+| Las Vegas   |     5 |
+| Phoenix     |     5 |
+| Las Vegas   |     5 |
+| Phoenix     |     5 |
+| Scarborough |     5 |
+| Madison     |     5 |
+| Belmont     |     5 |
+| Champaign   |     4 |
+| Las Vegas   |     4 |
+| Brook Park  |     4 |
+| Gastonia    |     3 |
+| Tempe       |     2 |
+| Peoria      |     1 |
++-------------+-------+
+         
+--iv. Provide the SQL code you used to create your final dataset:
+
+SELECT
+business.city,
+review.stars
+FROM business INNER JOIN review ON business.id = review.id
+ORDER BY review.stars DESC
+
